@@ -1,1 +1,56 @@
-<!DOCTYPE html><html><head><title>Invoice GST Demo</title><script src="app.js" defer></script><link rel="stylesheet" href="styles.css"></head><body><h1>Invoice GST Calculator</h1><label>Invoice Type:<select id="invoiceType"><option value="domestic">B2B Domestic</option><option value="export">B2B Export</option></select></label><br><br><label>Base Amount:<input id="baseAmount" type="number" value="1000" /></label><br><br><button id="calculateBtn">Calculate Total</button><h2 id="result"></h2></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Invoice GST Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1>Billing &amp; Invoicing – GST Demo</h1>
+      <p class="subtitle">
+        Compare Domestic vs Export GST and visualize high-value invoice behavior.
+      </p>
+    </header>
+
+    <main class="main">
+      <section class="card">
+        <h2 class="card-title">Invoice GST Calculator</h2>
+
+        <div class="field">
+          <label for="invoiceType" class="label">Invoice Type</label>
+          <select id="invoiceType" class="input">
+            <option value="domestic">B2B Domestic</option>
+            <option value="export">B2B Export</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="baseAmount" class="label">Base Amount</label>
+          <input id="baseAmount" type="number" value="1000" class="input" />
+        </div>
+
+        <button id="calculateBtn" class="button">Calculate Total</button>
+
+        <div class="result-panel">
+          <h3 class="result-title">Result</h3>
+          <p id="result" class="result-value">Enter details and click Calculate.</p>
+          <!-- QTM-3000 banner -->
+          <p id="alert" class="banner"></p>
+        </div>
+      </section>
+
+      <section class="card card-secondary">
+        <h2 class="card-title">Hints</h2>
+        <ul class="hint-list">
+          <li>Domestic invoices use 18% GST.</li>
+          <li>Export invoices can be 0% or 12% for high-value amounts.</li>
+          <li>High-value export invoices may require additional review.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
