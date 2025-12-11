@@ -1,22 +1,35 @@
 package billing;
 
+// GST calculation logic with:
+// - Domestic: 18%
+// - Export:
+//     baseAmount <= 50,000 => 0%
+//     baseAmount  > 50,000 => 12%
+// - QTM-4000: Cap GST at 20,000 for any invoice.
 public class TaxCalculator {
 
-    // Updated logic:
-    // Domestic: 18%
-    // Export:
-    //   - <= 50,000 => 0%
-    //   - > 50,000  => 12%
     public double calculateB2BGst(double amount, boolean isExport) {
+        double gst;
+
         if (!isExport) {
-            return amount * 0.18; // Domestic
+            // Domestic
+            gst = amount * 0.18;
+        } else {
+            // Export
+            if (amount > 50000) {
+                // High-value export
+                gst = amount * 0.12;
+            } else {
+                // Baseline export
+                gst = 0;
+            }
         }
 
-        // Export logic
-        if (amount > 50000) {
-            return amount * 0.12; // High-value export
+        // QTM-4000: Cap GST at 20,000
+        if (gst > 20000) {
+            gst = 20000;
         }
 
-        return 0; // Baseline export
+        return gst;
     }
 }
